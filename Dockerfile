@@ -7,12 +7,11 @@ WORKDIR /app
 COPY . /app
 
 # Installez les dépendances du projet
-RUN bundle install
 
 # Exposez le port sur lequel l'application Ruby s'exécutera
 EXPOSE 3000
 
 # Commande par défaut pour démarrer votre application Ruby
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# CMD ["rails", "server", "-b", "0.0.0.0"]
 
-
+CMD ["sh", "-c", "bundle install && rails server -b 0.0.0.0"]

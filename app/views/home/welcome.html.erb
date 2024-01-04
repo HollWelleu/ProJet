@@ -1,7 +1,9 @@
 
 <div class='home-page-card'>
     <h1>Bienvenue sur ProJet</h1>
+    <%= current_user.username unless current_user.blank? %>
     <% if user_signed_in? %>
+        <%= link_to 'Aller à la page principale', home_index_path %>
         <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %>
     <% else %>
         <%=  link_to "Se connecter", new_user_session_path %>
