@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     def show
         @project = Project.find(params[:id])
         @project_users = @project.users
+        @project_tasks = @project.tasks
     end
 
     def new
@@ -50,7 +51,7 @@ class ProjectsController < ApplicationController
     def destroy
         @project = Project.find(params[:id])
         @project.destroy
-        redirect_to projects_path
+        redirect_to home_index_path
     end
 
     private

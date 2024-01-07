@@ -73,3 +73,4 @@ end
 
 gem "devise"
 gem "byebug"
+gem "turbolinks", "~> 5"

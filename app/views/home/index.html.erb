@@ -12,6 +12,8 @@
         <p>Description du projet : <%= project.description %></p>
         <p>Statut du projet : <%= project.status %></p>
         <p>Nombre de participants : <%= project.users.count %></p>
+        <%= link_to "Voir le projet", project_path(project) %>
+        <%= link_to "Supprimer le projet", project_path(project), data: { "turbo-method": :delete , turbo_confirm: 'Are you sure to delete project ?' } %>
     </div>
 
 
