@@ -20,7 +20,7 @@
             <div class="task-card">
                 <h2><%= pj.name %></h2>
                 <p>Description: <%= pj.description %></p>
-                <p>Done: <%= pj.done ? "oui" : "non" %></p>
+                <p>Done: <%= pj.done ? "yes" : "no" %></p>
                 <%= link_to "Show", project_task_path(pj.project, pj) %>
                 <%= link_to "Edit", edit_project_task_path(pj.project, pj) %>
                 <%= link_to "Destroy", project_task_path(pj.project, pj), data: { "turbo-method": :delete , turbo_confirm: 'Are you sure to delete task ?' } %>

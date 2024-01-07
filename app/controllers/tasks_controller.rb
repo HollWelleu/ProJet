@@ -21,16 +21,19 @@ class TasksController < ApplicationController
 
     def show
         @task = @project.tasks.find(params[:id])
+
+        @project = @task.project
     end
 
     def edit
         @task = @project.tasks.find(params[:id])
+        @project = @task.project
     end
 
     def update
         @task = @project.tasks.find(params[:id])
-        if @task.update_attributes(task_params)
-            redirect_to project_tasks_path(@project)
+        if @task.update(task_params)
+            redirect_to project_path(@task.project), notice: 'La tâche a été mise à jour avec succès.'
         else
             render :action => "edit"
         end
@@ -38,8 +41,9 @@ class TasksController < ApplicationController
 
     def destroy
         @task = @project.tasks.find(params[:id])
+        project = @task.project
         @task.destroy
-        redirect_to project_tasks_path(@project), notice: 'La tâche a été supprimée avec succès.'
+        redirect_to project_path(project), notice: 'La tâche a été supprimée avec succès.'
     end
 
     private
@@ -49,7 +53,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:name, :description, :done)
+        params.require(:task).permit(:name, :description, :done, :deadline, :priority, :advancement)
     end
 
 end
