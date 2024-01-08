@@ -5,5 +5,6 @@ class Project < ApplicationRecord
     has_many :tasks, dependent: :destroy
 
     attr_accessor :user_ids
+    attr_accessor :lead_dev_ids
 
 end

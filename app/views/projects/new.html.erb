@@ -21,19 +21,42 @@
         <%= f.text_area :description, id: :project_description %>
     </div>
 
-    <div class="select">
+    <div class="field">
         <%= f.label :status %>
-        <%= f.select :status, ['En cours', 'Terminé'], id: :project_status %>
+        <%= f.select :status, ['En cours', 'Terminé'], id: :project_status, class: 'custom-select' %>
     </div>
 
     <div class="field">
         <%= f.label :users %>
-        <%= f.collection_check_boxes :user_ids, User.all.where.not(id: current_user.id), :id, :username %>
+        <div class="users-chekbox">
+            <%= f.collection_check_boxes :user_ids, User.all.where.not(id: current_user.id), :id, :username %>
+        </div>
     </div>
 
-    <div class="actions">
-        <%= f.submit %>
+    <div class="field">
+        <%= f.label :lead_devs %>
+        <%= f.collection_select :lead_dev_ids, User.all.where.not(id: current_user.id), :id, :username, { multiple: true, include_blank: true}, class: 'custom-select' %>
+    </div>
+
+    <div class="field">
+        <%= f.submit style: "margin-bottom: 1rem", class: 'btn-add' %>
     </div>
 <% end %>
 
-<%= link_to 'Back', home_index_path %>
+<%= link_to 'Back', home_index_path, class: 'btn-back' %>
+
+<style>
+
+    .custom-select, #project_status {
+        width: 100%;
+        height: 80%;
+        padding: 1rem;
+        border: 2px solid #ffffff;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+</style>
+
+<script>
+</script>

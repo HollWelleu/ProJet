@@ -1,5 +1,5 @@
 <%= link_to "New Task", new_project_task_path %>
-<%= link_to "Back to project", project_path(@project) %>
+<%= link_to "Back to project", project_path(@project), class: 'btn-back' %>
 <% @tasks.each do |task| %>
     <div class="task-card">
         <h2><%= task.name %></h2>

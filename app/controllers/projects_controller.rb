@@ -23,7 +23,13 @@ class ProjectsController < ApplicationController
 
         @users = params[:project][:user_ids]
 
+        lead_devs = []
+
+        lead_devs << params[:project][:lead_dev_ids]
+
         @users.delete_if { |user_id| user_id.empty? }
+
+        lead_devs.delete_if { |user_id| user_id.empty? }
 
         if @users
             @users.each do |user_id|
@@ -32,6 +38,12 @@ class ProjectsController < ApplicationController
         end
 
         if @project.save
+            if lead_devs
+                lead_devs.each do |user_id|
+                    @project.projects_users.find_by(user_id: user_id).update(role: "Lead Developer")
+                end
+            end
+
             redirect_to home_index_path
         else
             render 'new'
@@ -57,7 +69,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:name, :description, :start_date, :end_date, :status, :user_ids => [])
+        params.require(:project).permit(:name, :description, :start_date, :end_date, :status, :user_ids => [], :lead_dev_ids => [])
     end
 
 end

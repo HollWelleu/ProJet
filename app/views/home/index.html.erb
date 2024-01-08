@@ -7,13 +7,13 @@
 
 
     <div class="project-card">
-        <h3>Nom du projet : <%= project.name %></h3>
+        <h3>Project name : <%= project.name %></h3>
         <hr>
         <p>Description du projet : <%= project.description %></p>
-        <p>Statut du projet : <%= project.status %></p>
-        <p>Nombre de participants : <%= project.users.count %></p>
-        <%= link_to "Voir le projet", project_path(project) %>
-        <%= link_to "Supprimer le projet", project_path(project), data: { "turbo-method": :delete , turbo_confirm: 'Are you sure to delete project ?' } %>
+        <p>Status : <%= project.status %></p>
+        <p>Participants : <%= project.users.count %></p>
+        <%= link_to "Show", project_path(project) %>
+        <%= link_to "Delete project", project_path(project), data: { "turbo-method": :delete , turbo_confirm: 'Are you sure to delete project ?' } %>
     </div>
 
 

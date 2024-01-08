@@ -1,5 +1,5 @@
-<%= link_to 'Add task', new_project_task_path(@project) %>
-<%= link_to 'Back to projects', home_index_path %>
+<%= link_to 'Add task', new_project_task_path(@project), class: 'btn-add' %>
+<%= link_to 'Back to projects', home_index_path, class: 'btn-back' %>
 
 <h1><%= @project.name %></h1>
 
